@@ -1,0 +1,60 @@
++ cd
++ cd /home/ahalwai/mlperf-inference/mlperf/inference/vision/classification_and_detection
++ echo /home/ahalwai/mlperf-inference/mlperf/inference/vision/classification_and_detection
++ source run_common.sh
+++ echo 'script: |/home/ahalwai/matrix-benchmarking/../mlperf-inference/mlperf/inference/vision/classification_and_detection/run_and_time.sh| frame:|pytorch| model:|ssd-mobilenet| device:|cpu|'
+++ '[' 3 -lt 1 ']'
+++ '[' x/home/ahalwai/mlperf-inference/coco2 == x ']'
+++ '[' x/home/ahalwai/mlperf-inference/mlperf/ == x ']'
+++ backend=tf
+++ model=resnet50
+++ device=cpu
+++ for i in $*
+++ case $i in
+++ backend=pytorch
+++ shift
+++ for i in $*
+++ case $i in
+++ model=ssd-mobilenet
+++ shift
+++ for i in $*
+++ case $i in
+++ device=cpu
+++ shift
+++ '[' cpu == cpu ']'
+++ export CUDA_VISIBLE_DEVICES=
+++ CUDA_VISIBLE_DEVICES=
+++ name=ssd-mobilenet-pytorch
+++ extra_args=
+++ '[' ssd-mobilenet-pytorch == resnet50-tf ']'
+++ '[' ssd-mobilenet-pytorch == mobilenet-tf ']'
+++ '[' ssd-mobilenet-pytorch == ssd-mobilenet-tf ']'
+++ '[' ssd-mobilenet-pytorch == ssd-resnet34-tf ']'
+++ '[' ssd-mobilenet-pytorch == resnet50-onnxruntime ']'
+++ '[' ssd-mobilenet-pytorch == mobilenet-onnxruntime ']'
+++ '[' ssd-mobilenet-pytorch == ssd-mobilenet-onnxruntime ']'
+++ '[' ssd-mobilenet-pytorch == ssd-resnet34-onnxruntime ']'
+++ '[' ssd-mobilenet-pytorch == ssd-resnet34-tf-onnxruntime ']'
+++ '[' ssd-mobilenet-pytorch == resnet50-pytorch ']'
+++ '[' ssd-mobilenet-pytorch == mobilenet-pytorch ']'
+++ '[' ssd-mobilenet-pytorch == ssd-resnet34-pytorch ']'
+++ '[' ssd-mobilenet-pytorch == ssd-mobilenet-pytorch ']'
+++ model_path=/home/ahalwai/mlperf-inference/mlperf//ssd_mobilenet_v1.pytorch
+++ profile=ssd-mobilenet-pytorch
+++ '[' ssd-mobilenet-pytorch == resnet50-tflite ']'
+++ '[' ssd-mobilenet-pytorch == mobilenet-tflite ']'
+++ name=pytorch-cpu/ssd-mobilenet
+++ EXTRA_OPS=' '
++ dockercmd=podman
++ '[' cpu == gpu ']'
++ cp ../../mlperf.conf .
+++ pwd
++ OUTPUT_DIR=/home/ahalwai/mlperf-inference/mlperf/inference/vision/classification_and_detection/output/pytorch-cpu/ssd-mobilenet
++ '[' '!' -d /home/ahalwai/mlperf-inference/mlperf/inference/vision/classification_and_detection/output/pytorch-cpu/ssd-mobilenet ']'
++ mkdir -p /home/ahalwai/mlperf-inference/mlperf/inference/vision/classification_and_detection/output/pytorch-cpu/ssd-mobilenet
++ image=mlperf-infer-imgclassify-cpu
++ podman build -t mlperf-infer-imgclassify-cpu -f Dockerfile.cpu .
++ opts='--mlperf_conf ./mlperf.conf --profile ssd-mobilenet-pytorch  --model /home/ahalwai/mlperf-inference/mlperf//ssd_mobilenet_v1.pytorch     --dataset-path /home/ahalwai/mlperf-inference/coco2 --output /home/ahalwai/mlperf-inference/mlperf/inference/vision/classification_and_detection/output/pytorch-cpu/ssd-mobilenet    '
++ tee /home/ahalwai/mlperf-inference/mlperf/inference/vision/classification_and_detection/output/pytorch-cpu/ssd-mobilenet/output.txt
+++ pwd
++ podman run -e 'opts=--mlperf_conf ./mlperf.conf --profile ssd-mobilenet-pytorch  --model /home/ahalwai/mlperf-inference/mlperf//ssd_mobilenet_v1.pytorch     --dataset-path /home/ahalwai/mlperf-inference/coco2 --output /home/ahalwai/mlperf-inference/mlperf/inference/vision/classification_and_detection/output/pytorch-cpu/ssd-mobilenet    ' -v /home/ahalwai/mlperf-inference/coco2:/home/ahalwai/mlperf-inference/coco2:z -v /home/ahalwai/mlperf-inference/mlperf/:/home/ahalwai/mlperf-inference/mlperf/:z -v /home/ahalwai/mlperf-inference/mlperf/inference/vision/classification_and_detection:/mlperf:z -v /home/ahalwai/mlperf-inference/mlperf/inference/vision/classification_and_detection/output/pytorch-cpu/ssd-mobilenet:/output:z -v /proc:/host_proc --security-opt label=disable -t mlperf-infer-imgclassify-cpu:latest /mlperf/run_helper.sh

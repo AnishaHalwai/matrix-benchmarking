@@ -1,0 +1,79 @@
+/home/ahalwai/mlperf-inference/mlperf/inference/vision/classification_and_detection
+script: |/home/ahalwai/matrix-benchmarking/../mlperf-inference/mlperf/inference/vision/classification_and_detection/run_and_time.sh| frame:|pytorch| model:|ssd-mobilenet| device:|cpu|
+STEP 1/21: FROM ubuntu:16.04
+STEP 2/21: ENV PYTHON_VERSION=3.7
+--> Using cache 4d3c8cb7369118d444f6640360b5c5e2349b62d10ac409ececfe0bf3d57ec361
+--> 4d3c8cb7369
+STEP 3/21: ENV LANG C.UTF-8
+--> Using cache 6052e61013b65c11620e64a4bbe0f40a69805d266cfbe64d052f7a84d05351f1
+--> 6052e61013b
+STEP 4/21: ENV LC_ALL C.UTF-8
+--> Using cache 7d0e66ec82bc49881c656fc1761a08556f4b5891e4bead2f715eb8b38e5a3bd2
+--> 7d0e66ec82b
+STEP 5/21: ENV PATH /opt/anaconda3/bin:$PATH
+--> Using cache 6429d14b4361713c336eac60e0d136ade11ab3b3dd44d804435e22a8acdd2636
+--> 6429d14b436
+STEP 6/21: WORKDIR /root
+--> Using cache 5e187cb92a62cca819dd30c888093befc3adc4f5d089b5485449329ba6a14775
+--> 5e187cb92a6
+STEP 7/21: ENV HOME /root
+--> Using cache ee8c351c966065cb5431b1c64a61aac307685ed5e8c7297dabf1dd62722744a0
+--> ee8c351c966
+STEP 8/21: RUN apt-get update
+--> Using cache bd464fd4ce4b5bebc0a5b094635a41e6786782f740436882554ff80cb26e59a0
+--> bd464fd4ce4
+STEP 9/21: RUN apt-get install -y --no-install-recommends       git       build-essential       software-properties-common       ca-certificates       wget       curl       htop       zip       unzip
+--> Using cache 286c155754713d8dafbcabf513d407fee725f6a9229448be7d3af798f32e9f78
+--> 286c1557547
+STEP 10/21: RUN cd /opt &&     wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-4.6.14-Linux-x86_64.sh -O miniconda.sh &&     /bin/bash ./miniconda.sh -b -p /opt/anaconda3 &&     rm miniconda.sh &&     /opt/anaconda3/bin/conda clean -tipsy &&     ln -s /opt/anaconda3/etc/profile.d/conda.sh /etc/profile.d/conda.sh &&     echo ". /opt/anaconda3/etc/profile.d/conda.sh" >> ~/.bashrc &&     echo "conda activate base" >> ~/.bashrc &&     conda config --set always_yes yes --set changeps1 no
+--> Using cache e6e85b14bccb6b49690c3e5b6b0611b1bc566755dc37c3c96734526502527bd9
+--> e6e85b14bcc
+STEP 11/21: RUN conda install pytorch-cpu torchvision-cpu -c pytorch
+--> Using cache 7bf6c076c9075d70d2b147d496c191896b52f44c3ccf69f9cda0812446b3d194
+--> 7bf6c076c90
+STEP 12/21: RUN pip install --upgrade pip setuptools wheel
+--> Using cache f8ddb57de9b0623ed09a51b7341db205b950f2dd7852583e8e0d720596fb9224
+--> f8ddb57de9b
+STEP 13/21: RUN pip install --upgrade pip
+--> Using cache b90046495caaf9fbcaab8b61ab4b0f6229730f3f3a0491243eb32b54d95e781e
+--> b90046495ca
+STEP 14/21: RUN pip install jupyter numpy matplotlib rise
+--> Using cache 5536ba52ff8390b54285d56056e5b1e4146163530c35bfb290ac773a8d7cb87a
+--> 5536ba52ff8
+STEP 15/21: RUN pip install future pillow onnx opencv-python-headless tensorflow onnxruntime
+--> Using cache 83cecc86e91234fd51af60b840de500051c123a0655374190c7bb13c1ca09cfa
+--> 83cecc86e91
+STEP 16/21: RUN pip install Cython && pip install pycocotools
+--> Using cache 8f7ffbe1441954115c1fda7613a695c347ee97f405f386adbff74fd29d5d6132
+--> 8f7ffbe1441
+STEP 17/21: RUN cd /tmp &&     git clone --recursive https://github.com/mlcommons/inference &&     cd inference/loadgen &&     pip install pybind11 &&     CFLAGS="-std=c++14" python setup.py install &&     rm -rf mlperf
+--> Using cache df66e13c2f878c5b7b2d131469ad5ffa82e1856d734160e288640c9b6e8c6d31
+--> df66e13c2f8
+STEP 18/21: ENV TINI_VERSION v0.6.0
+--> Using cache 38be9a31e8632041024ae0c81871e0795a675f78ec384f992e8a9ab44e65ddd8
+--> 38be9a31e86
+STEP 19/21: ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /usr/bin/tini
+--> Using cache d54702c87b9409f6a6ba415b5355d0375b867c61ddb26270ef95f16bc807e623
+--> d54702c87b9
+STEP 20/21: RUN chmod +x /usr/bin/tini
+--> Using cache 2f52d2fb5b29aa2927f560afe9214df3b2397079311cf18e0f053e613e253b09
+--> 2f52d2fb5b2
+STEP 21/21: ENTRYPOINT ["/bin/bash"]
+--> Using cache 8fdc77bfceecfc6d9424e06ace9e39cc21f29bed6e6aa76f91f005f9a6fe8120
+COMMIT mlperf-infer-imgclassify-cpu
+--> 8fdc77bfcee
+Successfully tagged localhost/mlperf-infer-imgclassify-cpu:latest
+8fdc77bfceecfc6d9424e06ace9e39cc21f29bed6e6aa76f91f005f9a6fe8120
+Clearing caches.
+3
+STARTING RUN AT 2022-02-24 04:10:36 AM
+INFO:main:Namespace(accuracy=False, audit_conf='audit.config', backend='pytorch-native', cache=0, count=None, data_format=None, dataset='coco-300-pt', dataset_list=None, dataset_path='/home/ahalwai/mlperf-inference/coco2', debug=False, find_peak_performance=False, inputs=['image'], max_batchsize=32, max_latency=None, mlperf_conf='./mlperf.conf', model='/home/ahalwai/mlperf-inference/mlperf//ssd_mobilenet_v1.pytorch', model_name='ssd-mobilenet', output='/output', outputs=['bboxes', 'labels', 'scores'], performance_sample_count=None, profile='ssd-mobilenet-pytorch', qps=None, samples_per_query=8, scenario='SingleStream', threads=8, time=None, user_conf='user.conf')
+INFO:coco:loaded 5000 images, cache=0, took=78.3sec
+/mlperf/python/coco.py:115: VisibleDeprecationWarning: Creating an ndarray from ragged nested sequences (which is a list-or-tuple of lists-or-tuples-or ndarrays with different lengths or shapes) is deprecated. If you meant to do this, you must specify 'dtype=object' when creating the ndarray.
+  self.label_list = np.array(self.label_list)
+/opt/anaconda3/lib/python3.7/site-packages/torch/serialization.py:454: SourceChangeWarning: source code of class 'models.ssd_mobilenet_v1.SSD' has changed. you can retrieve the original source code by accessing the object's source attribute or set `torch.nn.Module.dump_patches = True` and use the patch tool to revert the changes.
+  warnings.warn(msg, SourceChangeWarning)
+INFO:main:starting TestScenario.SingleStream
+Mean latency: 64012184.79479244
+TestScenario.SingleStream qps=15.61, mean=0.0640, time=600.228, queries=9371, tiles=50.0:0.0633,80.0:0.0651,90.0:0.0667,95.0:0.0686,99.0:0.0743,99.9:0.1102
+ENDING RUN AT 2022-02-24 04:21:56 AM

@@ -1,0 +1,6 @@
+run=3
+script=run_and_time.sh
+framework=onnxruntime 
+model=ssd-mobilenet
+device=cpu
+
