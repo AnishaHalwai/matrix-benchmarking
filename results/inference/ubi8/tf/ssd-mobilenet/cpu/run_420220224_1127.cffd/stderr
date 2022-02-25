@@ -1,0 +1,59 @@
++ cd
++ cd /home/ahalwai/mlperf-inference/mlperf/inference/vision/classification_and_detection
++ echo /home/ahalwai/mlperf-inference/mlperf/inference/vision/classification_and_detection
++ source run_common.sh
+++ echo 'script: |/home/ahalwai/matrix-benchmarking/../mlperf-inference/mlperf/inference/vision/classification_and_detection/run_and_time_ubi8.sh| frame:|tf| model:|ssd-mobilenet| device:|cpu|'
+++ '[' 3 -lt 1 ']'
+++ '[' x/home/ahalwai/mlperf-inference/coco2 == x ']'
+++ '[' x/home/ahalwai/mlperf-inference/mlperf/ == x ']'
+++ backend=tf
+++ model=resnet50
+++ device=cpu
+++ for i in $*
+++ case $i in
+++ backend=tf
+++ shift
+++ for i in $*
+++ case $i in
+++ model=ssd-mobilenet
+++ shift
+++ for i in $*
+++ case $i in
+++ device=cpu
+++ shift
+++ '[' cpu == cpu ']'
+++ export CUDA_VISIBLE_DEVICES=
+++ CUDA_VISIBLE_DEVICES=
+++ name=ssd-mobilenet-tf
+++ extra_args=
+++ '[' ssd-mobilenet-tf == resnet50-tf ']'
+++ '[' ssd-mobilenet-tf == mobilenet-tf ']'
+++ '[' ssd-mobilenet-tf == ssd-mobilenet-tf ']'
+++ model_path=/home/ahalwai/mlperf-inference/mlperf//ssd_mobilenet_v1_coco_2018_01_28/frozen_inference_graph.pb
+++ profile=ssd-mobilenet-tf
+++ '[' ssd-mobilenet-tf == ssd-resnet34-tf ']'
+++ '[' ssd-mobilenet-tf == resnet50-onnxruntime ']'
+++ '[' ssd-mobilenet-tf == mobilenet-onnxruntime ']'
+++ '[' ssd-mobilenet-tf == ssd-mobilenet-onnxruntime ']'
+++ '[' ssd-mobilenet-tf == ssd-resnet34-onnxruntime ']'
+++ '[' ssd-mobilenet-tf == ssd-resnet34-tf-onnxruntime ']'
+++ '[' ssd-mobilenet-tf == resnet50-pytorch ']'
+++ '[' ssd-mobilenet-tf == mobilenet-pytorch ']'
+++ '[' ssd-mobilenet-tf == ssd-resnet34-pytorch ']'
+++ '[' ssd-mobilenet-tf == ssd-mobilenet-pytorch ']'
+++ '[' ssd-mobilenet-tf == resnet50-tflite ']'
+++ '[' ssd-mobilenet-tf == mobilenet-tflite ']'
+++ name=tf-cpu/ssd-mobilenet
+++ EXTRA_OPS=' '
++ dockercmd=podman
++ '[' cpu == gpu ']'
++ cp ../../mlperf.conf .
+++ pwd
++ OUTPUT_DIR=/home/ahalwai/mlperf-inference/mlperf/inference/vision/classification_and_detection/output/tf-cpu/ssd-mobilenet
++ '[' '!' -d /home/ahalwai/mlperf-inference/mlperf/inference/vision/classification_and_detection/output/tf-cpu/ssd-mobilenet ']'
++ image=mlperf-infer-imgclassify-cpu
++ podman build -t mlperf-infer-imgclassify-cpu -f Dockerfile.ubicpu .
++ opts='--mlperf_conf ./mlperf.conf --profile ssd-mobilenet-tf  --model /home/ahalwai/mlperf-inference/mlperf//ssd_mobilenet_v1_coco_2018_01_28/frozen_inference_graph.pb     --dataset-path /home/ahalwai/mlperf-inference/coco2 --output /home/ahalwai/mlperf-inference/mlperf/inference/vision/classification_and_detection/output/tf-cpu/ssd-mobilenet    '
++ tee /home/ahalwai/mlperf-inference/mlperf/inference/vision/classification_and_detection/output/tf-cpu/ssd-mobilenet/output.txt
+++ pwd
++ podman run -e 'opts=--mlperf_conf ./mlperf.conf --profile ssd-mobilenet-tf  --model /home/ahalwai/mlperf-inference/mlperf//ssd_mobilenet_v1_coco_2018_01_28/frozen_inference_graph.pb     --dataset-path /home/ahalwai/mlperf-inference/coco2 --output /home/ahalwai/mlperf-inference/mlperf/inference/vision/classification_and_detection/output/tf-cpu/ssd-mobilenet    ' -v /home/ahalwai/mlperf-inference/coco2:/home/ahalwai/mlperf-inference/coco2:z -v /home/ahalwai/mlperf-inference/mlperf/:/home/ahalwai/mlperf-inference/mlperf/:z -v /home/ahalwai/mlperf-inference/mlperf/inference/vision/classification_and_detection:/mlperf:z -v /home/ahalwai/mlperf-inference/mlperf/inference/vision/classification_and_detection/output/tf-cpu/ssd-mobilenet:/output:z -v /proc:/host_proc --security-opt label=disable -t mlperf-infer-imgclassify-cpu:latest /mlperf/run_helper.sh

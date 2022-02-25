@@ -1,0 +1,6 @@
+run=4
+script=run_and_time_ubi8.sh
+framework=onnxruntime 
+model=ssd-mobilenet
+device=cpu
+

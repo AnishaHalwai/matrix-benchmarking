@@ -1,0 +1,6 @@
+run=2
+script=run_and_time_ubi8.sh
+framework=tf
+model=ssd-mobilenet
+device=cpu
+

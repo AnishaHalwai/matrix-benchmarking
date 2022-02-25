@@ -1,0 +1,80 @@
+/home/ahalwai/mlperf-inference/mlperf/inference/vision/classification_and_detection
+script: |/home/ahalwai/matrix-benchmarking/../mlperf-inference/mlperf/inference/vision/classification_and_detection/run_and_time_ubi8.sh| frame:|onnxruntime| model:|ssd-mobilenet| device:|cpu|
+STEP 1/22: FROM registry.access.redhat.com/ubi8/ubi
+STEP 2/22: ENV PYTHON_VERSION=3.7
+--> Using cache 4abe5ae5f1443c8c0fb1bad5b3ee61b698f1ea1cd0bc959a595377b0e236a335
+--> 4abe5ae5f14
+STEP 3/22: ENV LANG C.UTF-8
+--> Using cache 695ef18b9bad45a62801f08eb00a65d11c726ed31fb97d7cb8baf39b87640228
+--> 695ef18b9ba
+STEP 4/22: ENV LC_ALL C.UTF-8
+--> Using cache 9c03ab6ae3b9e2baaf2912f03a87098fd9ad5a9f19288b594eb8b7a14b4e2978
+--> 9c03ab6ae3b
+STEP 5/22: ENV PATH /opt/anaconda3/bin:$PATH
+--> Using cache dd6f35561101d5428d9d144b06de7ae6209fda18c3c606ac3175fcec22379d8f
+--> dd6f3556110
+STEP 6/22: WORKDIR /root
+--> Using cache 426aeaa444c20410352f15c8633bc86ae1470774b5c32a4e8e4f9f67ebf74697
+--> 426aeaa444c
+STEP 7/22: ENV HOME /root
+--> Using cache a4ff533090d6963a48ba9b0e0448d2456f81429648fa0fa24fcddeeb25f6861b
+--> a4ff533090d
+STEP 8/22: RUN dnf clean all
+--> Using cache 408819747b07c50c092c441a74959e9fcc005dc6c6153c294a64218b486e322e
+--> 408819747b0
+STEP 9/22: RUN dnf -y update
+--> Using cache e09f54a42939f3cbe1034caef2688be1097759c163690d4c4f97a8daebbc4202
+--> e09f54a4293
+STEP 10/22: RUN dnf install -y       https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm       git       gcc-c++ kernel-devel make       ca-certificates       wget       curl       htop       zip       unzip       bzip2
+--> Using cache f5e8b03d3d9671f2f406db6efe148a90294f6507528d9b79e3a34210bc7252c7
+--> f5e8b03d3d9
+STEP 11/22: RUN cd /opt &&     wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-4.6.14-Linux-x86_64.sh -O miniconda.sh &&     /bin/bash ./miniconda.sh -b -p /opt/anaconda3 &&     rm miniconda.sh &&     /opt/anaconda3/bin/conda clean -tipsy &&     ln -s /opt/anaconda3/etc/profile.d/conda.sh /etc/profile.d/conda.sh &&     echo ". /opt/anaconda3/etc/profile.d/conda.sh" >> ~/.bashrc &&     echo "conda activate base" >> ~/.bashrc &&     conda config --set always_yes yes --set changeps1 no
+--> Using cache a68551bb4f65ceb4cadf6139f1afba0057a262c82d776d014857619bf3006931
+--> a68551bb4f6
+STEP 12/22: RUN conda install pytorch-cpu torchvision-cpu -c pytorch
+--> Using cache e57dcc222d402ab078445a5984b4c72880a9766b2ff3b6381cedf1c39d3de201
+--> e57dcc222d4
+STEP 13/22: RUN pip install --upgrade pip setuptools wheel
+--> Using cache fb67922c78f678e1d9dd29300e60130d0ff521d3578c387d01c984bbd7d822b6
+--> fb67922c78f
+STEP 14/22: RUN pip install --upgrade pip
+--> Using cache 0d53bb72db0ecc0f762a9a1091356888e4a4b69b83821afc0c3c202c60d77827
+--> 0d53bb72db0
+STEP 15/22: RUN pip install jupyter numpy matplotlib rise
+--> Using cache 584186569bbf3160ecd6f38af2c851331ca5b64b477c682f39eef4ea0bedcfe1
+--> 584186569bb
+STEP 16/22: RUN pip install future pillow onnx opencv-python-headless tensorflow onnxruntime
+--> Using cache e99ace598bc7fbe7b941ff29f8dc2e4f95f63aeef003c7a5ef4cb859e6f8a26d
+--> e99ace598bc
+STEP 17/22: RUN pip install Cython && pip install pycocotools
+--> Using cache 0828585156bbf3aaf0ed8711e09d30ce4d7943ce5a867fd4cb19b071bc3afe4b
+--> 0828585156b
+STEP 18/22: RUN cd /tmp &&     git clone --recursive https://github.com/mlcommons/inference &&     cd inference/loadgen &&     pip install pybind11 &&     CFLAGS="-std=c++14" python setup.py install &&     rm -rf mlperf
+--> Using cache 74e31c79a830df8b8c24e5313157447efc5a10c851fcc55a337d88dea7f79605
+--> 74e31c79a83
+STEP 19/22: ENV TINI_VERSION v0.6.0
+--> Using cache d991cf953cb41a4f00d1643b92273ac4c409d767ec671a8bfc875759948650f9
+--> d991cf953cb
+STEP 20/22: ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /usr/bin/tini
+--> Using cache b74f3e044651d9e93d47e437d74b5bac7b0283d35d4338b3f088810e9ce2868c
+--> b74f3e04465
+STEP 21/22: RUN chmod +x /usr/bin/tini
+--> Using cache b229cb1287d8d65d97062d2b5bf9b051443e4c09eae85c07085543871d10bc0e
+--> b229cb1287d
+STEP 22/22: ENTRYPOINT ["/bin/bash"]
+--> Using cache 9b7ae73b67348ea272755fdb0293315886eb5eecd0ce1b57969b15db429f0110
+COMMIT mlperf-infer-imgclassify-cpu
+--> 9b7ae73b673
+Successfully tagged localhost/mlperf-infer-imgclassify-cpu:latest
+9b7ae73b67348ea272755fdb0293315886eb5eecd0ce1b57969b15db429f0110
+Clearing caches.
+3
+STARTING RUN AT 2022-02-24 03:48:45 AM
+INFO:main:Namespace(accuracy=False, audit_conf='audit.config', backend='onnxruntime', cache=0, count=None, data_format='NHWC', dataset='coco-300', dataset_list=None, dataset_path='/home/ahalwai/mlperf-inference/coco2', debug=False, find_peak_performance=False, inputs=None, max_batchsize=32, max_latency=None, mlperf_conf='./mlperf.conf', model='/home/ahalwai/mlperf-inference/mlperf//ssd_mobilenet_v1_coco_2018_01_28.onnx', model_name='ssd-mobilenet', output='/output', outputs=['num_detections:0', 'detection_boxes:0', 'detection_scores:0', 'detection_classes:0'], performance_sample_count=None, profile='ssd-mobilenet-onnxruntime', qps=None, samples_per_query=8, scenario='SingleStream', threads=8, time=None, user_conf='user.conf')
+INFO:coco:loaded 5000 images, cache=0, took=0.7sec
+/mlperf/python/coco.py:115: VisibleDeprecationWarning: Creating an ndarray from ragged nested sequences (which is a list-or-tuple of lists-or-tuples-or ndarrays with different lengths or shapes) is deprecated. If you meant to do this, you must specify 'dtype=object' when creating the ndarray.
+  self.label_list = np.array(self.label_list)
+INFO:main:starting TestScenario.SingleStream
+Mean latency: 21440382.615442388
+TestScenario.SingleStream qps=46.59, mean=0.0214, time=600.137, queries=27962, tiles=50.0:0.0211,80.0:0.0212,90.0:0.0222,95.0:0.0246,99.0:0.0305,99.9:0.0355
+ENDING RUN AT 2022-02-24 03:58:53 AM
